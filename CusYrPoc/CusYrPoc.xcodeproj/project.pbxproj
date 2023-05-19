@@ -17,6 +17,9 @@
 		84FAB5F42A174E5B0047315E /* CusYrPocTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FAB5F32A174E5B0047315E /* CusYrPocTests.m */; };
 		84FAB5FE2A174E5B0047315E /* CusYrPocUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FAB5FD2A174E5B0047315E /* CusYrPocUITests.m */; };
 		84FAB6002A174E5B0047315E /* CusYrPocUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FAB5FF2A174E5B0047315E /* CusYrPocUITestsLaunchTests.m */; };
+		84FAB60F2A175F0C0047315E /* MiLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FAB60D2A175F0C0047315E /* MiLiveViewController.m */; };
+		84FAB6102A175F0C0047315E /* MiLiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FAB60E2A175F0C0047315E /* MiLiveViewController.xib */; };
+		E7B8247B2CD6311A1B3F4555 /* Pods_CusYrPoc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE42367A8B9CF0E97C72B4AE /* Pods_CusYrPoc.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		782F9F744DBF5C56E35E059D /* Pods-CusYrPoc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CusYrPoc.debug.xcconfig"; path = "Target Support Files/Pods-CusYrPoc/Pods-CusYrPoc.debug.xcconfig"; sourceTree = "<group>"; };
+		818C464A56E6609A3FDC2B98 /* Pods-CusYrPoc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CusYrPoc.release.xcconfig"; path = "Target Support Files/Pods-CusYrPoc/Pods-CusYrPoc.release.xcconfig"; sourceTree = "<group>"; };
 		84FAB5D42A174E580047315E /* CusYrPoc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CusYrPoc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84FAB5D72A174E580047315E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		84FAB5D82A174E580047315E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -54,6 +59,10 @@
 		84FAB5F92A174E5B0047315E /* CusYrPocUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CusYrPocUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84FAB5FD2A174E5B0047315E /* CusYrPocUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CusYrPocUITests.m; sourceTree = "<group>"; };
 		84FAB5FF2A174E5B0047315E /* CusYrPocUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CusYrPocUITestsLaunchTests.m; sourceTree = "<group>"; };
+		84FAB60C2A175F0C0047315E /* MiLiveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiLiveViewController.h; sourceTree = "<group>"; };
+		84FAB60D2A175F0C0047315E /* MiLiveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiLiveViewController.m; sourceTree = "<group>"; };
+		84FAB60E2A175F0C0047315E /* MiLiveViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MiLiveViewController.xib; sourceTree = "<group>"; };
+		EE42367A8B9CF0E97C72B4AE /* Pods_CusYrPoc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CusYrPoc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7B8247B2CD6311A1B3F4555 /* Pods_CusYrPoc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +91,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7883ADDE879522D98DEF9003 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				782F9F744DBF5C56E35E059D /* Pods-CusYrPoc.debug.xcconfig */,
+				818C464A56E6609A3FDC2B98 /* Pods-CusYrPoc.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		84FAB5CB2A174E570047315E = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +108,8 @@
 				84FAB5F22A174E5B0047315E /* CusYrPocTests */,
 				84FAB5FC2A174E5B0047315E /* CusYrPocUITests */,
 				84FAB5D52A174E580047315E /* Products */,
+				7883ADDE879522D98DEF9003 /* Pods */,
+				FB075ED17FA21F2E167C44F0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,6 +132,9 @@
 				84FAB5DB2A174E580047315E /* SceneDelegate.m */,
 				84FAB5DD2A174E580047315E /* ViewController.h */,
 				84FAB5DE2A174E580047315E /* ViewController.m */,
+				84FAB60C2A175F0C0047315E /* MiLiveViewController.h */,
+				84FAB60D2A175F0C0047315E /* MiLiveViewController.m */,
+				84FAB60E2A175F0C0047315E /* MiLiveViewController.xib */,
 				84FAB5E02A174E580047315E /* Main.storyboard */,
 				84FAB5E32A174E5B0047315E /* Assets.xcassets */,
 				84FAB5E52A174E5B0047315E /* LaunchScreen.storyboard */,
@@ -136,6 +161,14 @@
 			path = CusYrPocUITests;
 			sourceTree = "<group>";
 		};
+		FB075ED17FA21F2E167C44F0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EE42367A8B9CF0E97C72B4AE /* Pods_CusYrPoc.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,9 +176,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84FAB6032A174E5B0047315E /* Build configuration list for PBXNativeTarget "CusYrPoc" */;
 			buildPhases = (
+				A82F47EDCE57FA4EA6F9C739 /* [CP] Check Pods Manifest.lock */,
 				84FAB5D02A174E580047315E /* Sources */,
 				84FAB5D12A174E580047315E /* Frameworks */,
 				84FAB5D22A174E580047315E /* Resources */,
+				32F0E21B7AF7A51B6F0FF082 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -241,6 +276,7 @@
 			files = (
 				84FAB5E72A174E5B0047315E /* LaunchScreen.storyboard in Resources */,
 				84FAB5E42A174E5B0047315E /* Assets.xcassets in Resources */,
+				84FAB6102A175F0C0047315E /* MiLiveViewController.xib in Resources */,
 				84FAB5E22A174E580047315E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -261,6 +297,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		32F0E21B7AF7A51B6F0FF082 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CusYrPoc/Pods-CusYrPoc-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CusYrPoc/Pods-CusYrPoc-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CusYrPoc/Pods-CusYrPoc-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A82F47EDCE57FA4EA6F9C739 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CusYrPoc-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		84FAB5D02A174E580047315E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -269,6 +347,7 @@
 				84FAB5DF2A174E580047315E /* ViewController.m in Sources */,
 				84FAB5D92A174E580047315E /* AppDelegate.m in Sources */,
 				84FAB5EA2A174E5B0047315E /* main.m in Sources */,
+				84FAB60F2A175F0C0047315E /* MiLiveViewController.m in Sources */,
 				84FAB5DC2A174E580047315E /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +516,7 @@
 		};
 		84FAB6042A174E5B0047315E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 782F9F744DBF5C56E35E059D /* Pods-CusYrPoc.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -450,6 +530,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -464,6 +545,7 @@
 		};
 		84FAB6052A174E5B0047315E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 818C464A56E6609A3FDC2B98 /* Pods-CusYrPoc.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -477,6 +559,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
