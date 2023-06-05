@@ -7,7 +7,7 @@
 
 #import "MiLiveViewController.h"
 #import "MiKeyCentor.h"
-#import <AgoraRtcKit/AgoraRtcKit.h>
+#import <AgoraRtcKit/AgoraRtcEngineKit.h>
 #import <AgoraSenseTimeExtension/st_mobile_human_action.h>
 #import <AgoraSenseTimeExtension/st_mobile_effect.h>
 
@@ -33,46 +33,66 @@ NSString *const license_name = @"SenseME.lic";
     self.enable = NO;
     
     [self initializeAgoraEngine];
-    [self setupLocalVideo];
+    
     [self joinChannel];
 }
 
 
 // Objective-C
 - (void)initializeAgoraEngine {
-    self.agoraKit = [AgoraRtcEngineKit sharedEngineWithAppId:AppID delegate:self];
+//    self.agoraKit = [AgoraRtcEngineKit sharedEngineWithAppId:AppID delegate:self];
+    AgoraRtcEngineConfig *config = [AgoraRtcEngineConfig new];
+    config.appId = AppID;
+    self.agoraKit = [AgoraRtcEngineKit sharedEngineWithConfig:config
+                                                     delegate:self];
 }
 
 - (void)joinChannel{
     [self enableExtension:nil];
     [self.agoraKit enableVideo];
     
+//    [self.agoraKit setChannelProfile:AgoraChannelProfileLiveBroadcasting];
+//    [self.agoraKit setClientRole:AgoraClientRoleBroadcaster];
     
     AgoraCameraCapturerConfiguration *cfg = [[AgoraCameraCapturerConfiguration alloc] init];
     cfg.dimensions = CGSizeMake(720, 1280);
     cfg.frameRate = 24;
     cfg.cameraDirection = AgoraCameraDirectionFront;
     [self.agoraKit setCameraCapturerConfiguration:cfg];
-    
+
+
+
     AgoraRtcChannelMediaOptions *opts = [AgoraRtcChannelMediaOptions new];
     opts.clientRoleType = AgoraClientRoleBroadcaster;
     opts.publishCameraTrack = YES;
     opts.publishMicrophoneTrack = YES;
     opts.channelProfile = AgoraChannelProfileLiveBroadcasting;
-    
+
     AgoraVideoEncoderConfiguration *encoderCfg = [[AgoraVideoEncoderConfiguration alloc] initWithSize:CGSizeMake(720, 1280)
                                                                                             frameRate:15
                                                                                               bitrate:AgoraVideoBitrateStandard
                                                                                       orientationMode:AgoraVideoOutputOrientationModeAdaptative
                                                                                            mirrorMode:AgoraVideoMirrorModeAuto];
     [self.agoraKit setVideoEncoderConfiguration:encoderCfg];
-    
-    [self.agoraKit joinChannelByToken:@"" channelId:@"qitest" uid:111 mediaOptions:opts joinSuccess:nil];
-    
+   
+    [self.agoraKit startPreview];
+    [self setupLocalVideo];
     [self initExtension:nil];
     [self setComposer:nil];
     [self setSticker:nil];
+    
+//    [self.agoraKit joinChannelByToken:@"" channelId:@"qitest" info:nil uid:111 joinSuccess:nil];
+    
+    [self.agoraKit joinChannelByToken:@"" channelId:@"qitest" uid:111 mediaOptions:opts joinSuccess:nil];
 }
+
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+//{
+//    [self initExtension:nil];
+//    [self setComposer:nil];
+//    [self setSticker:nil];
+//    NSLog(@"QiDebug, ------%s-----",__func__);
+//}
 
 - (void)setupLocalVideo{
     AgoraRtcVideoCanvas *videoCanvas = [[AgoraRtcVideoCanvas alloc] init];
@@ -84,17 +104,11 @@ NSString *const license_name = @"SenseME.lic";
 
 
 - (IBAction)enableExtension:(id)sender {
-  self.enable = !self.enable;
-  [self.agoraKit enableExtensionWithVendor:@"SenseTime"
-                                 extension:@"Effect"
-                                   enabled:YES];
-//  if (self.enable) {
-//    [self.enableExtensionBtn setTitle:@"disableExtension"
-//                             forState:UIControlStateNormal];
-//  } else {
-//    [self.enableExtensionBtn setTitle:@"enableExtension"
-//                             forState:UIControlStateNormal];
-//  }
+    self.enable = !self.enable;
+    int res = [self.agoraKit enableExtensionWithVendor:@"SenseTime"
+                                   extension:@"Effect"
+                                     enabled:self.enable];
+    NSLog(@"QiDebug，美颜可用：%d",res);
 }
 
 - (IBAction)initExtension:(id)sender {
@@ -110,11 +124,12 @@ NSString *const license_name = @"SenseME.lic";
                                                        options:NSJSONWritingPrettyPrinted
                                                          error:&error];
         // 检查激活码
-        [self.agoraKit
+        int res = [self.agoraKit
             setExtensionPropertyWithVendor:@"SenseTime"
                                  extension:@"Effect"
                                        key:@"st_mobile_check_activecode"
                                      value:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
+        NSLog(@"QiDebug，检查激活码：%d",res);
     }
 
     {
@@ -201,6 +216,11 @@ NSString *const license_name = @"SenseME.lic";
 {
     NSLog(@"QiDebug, remote user joined channel, uid:%lu\n",uid);
 //    [self setupRemoteVideo:uid];
+}
+
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine reportAudioVolumeIndicationOfSpeakers:(NSArray<AgoraRtcAudioVolumeInfo *> *)speakers totalVolume:(NSInteger)totalVolume
+{
+    NSLog(@"QiDebug, -----%s--------",__func__);
 }
 
 @end
