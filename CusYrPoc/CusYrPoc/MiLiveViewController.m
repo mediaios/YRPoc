@@ -253,12 +253,10 @@ NSString *const license_name = @"SenseME.lic";
     [self joinChannel];
 }
 
-
 - (IBAction)onPressedBtnCancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
     [self.agoraKit leaveChannel:nil];
 }
-
 
 #pragma mark --AgoraRtcEngineDelegate
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didJoinChannel:(NSString *)channel withUid:(NSUInteger)uid elapsed:(NSInteger)elapsed
@@ -267,7 +265,7 @@ NSString *const license_name = @"SenseME.lic";
     
     AgoraLiveTranscodingUser *user = [[AgoraLiveTranscodingUser alloc] init];
     user.uid = 0;
-    user.rect = CGRectMake(0, 0, 360, 640);
+    user.rect = CGRectMake(0, 0, 720, 1280);
 //        user.alpha = 1.0;
 //        user.zOrder = 1;
     user.audioChannel = 2;
@@ -277,8 +275,8 @@ NSString *const license_name = @"SenseME.lic";
     transcoding.audioSampleRate = AgoraAudioSampleRateType48000;
     transcoding.audioChannels = 1;
     transcoding.audioBitrate = 48;
-    transcoding.size = CGSizeMake(360, 640);
-    transcoding.videoBitrate  = 1000;
+    transcoding.size = CGSizeMake(720, 1280);
+    transcoding.videoBitrate  = 2500;
     transcoding.videoFramerate = 15;
     transcoding.videoCodecProfile = AgoraVideoCodecProfileTypeHigh;
     transcoding.transcodingUsers = @[user];
