@@ -23,8 +23,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self initializeAgoraEngine];
     [self joinChannel];
+}
+
+- (UIModalPresentationStyle)modalPresentationStyle
+{
+    return UIModalPresentationFullScreen;
 }
 
 // Objective-C
@@ -51,6 +62,27 @@
     videoCanvas.view = self.liveView;
     videoCanvas.renderMode = AgoraVideoRenderModeHidden;
     [self.agoraKit setupRemoteVideo:videoCanvas];
+}
+
+- (IBAction)onPressedBtnOpenGaoqing:(id)sender {
+    [self.agoraKit leaveChannel:nil];
+    
+    // 观众端开启265
+    [self.agoraKit setParameters:@"{\"che.video.h265dec_libhevc_enable\": false}"];
+    [self.agoraKit setParameters:@"{\"che.video.h265_dec_enable\": true}"];
+    
+    
+    // 开超超级画质
+    [self.agoraKit setParameters:@"{\"rtc.video.enable_sr\":{\"enabled\":true, \"mode\":2},\"rtc.video.sr_max_wh\":921598,\"rtc.video.sr_type\":7}"];
+    
+    [self joinChannel];
+}
+
+
+
+- (IBAction)onPressedBtnCancel:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.agoraKit leaveChannel:nil];
 }
 
 #pragma mark --AgoraRtcEngineDelegate

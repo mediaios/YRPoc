@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MiLiveViewController">
             <connections>
                 <outlet property="liveView" destination="1Ed-cv-viI" id="bvB-9O-Odt"/>
+                <outlet property="mBeautyBtn" destination="TyC-Cd-jzY" id="w7b-IO-qj9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,43 +23,70 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ed-cv-viI">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xYr-v3-dmi">
-                            <rect key="frame" x="249" y="592" width="144" height="260"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sug-sG-dOW">
-                                    <rect key="frame" x="0.0" y="0.0" width="144" height="35"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="35" id="Mjg-R3-M2s"/>
-                                    </constraints>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="enable"/>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstItem="Sug-sG-dOW" firstAttribute="leading" secondItem="xYr-v3-dmi" secondAttribute="leading" id="2lc-4F-wY8"/>
-                                <constraint firstAttribute="height" constant="260" id="D7z-VA-u1T"/>
-                                <constraint firstItem="Sug-sG-dOW" firstAttribute="top" secondItem="xYr-v3-dmi" secondAttribute="top" id="Nex-EV-3nU"/>
-                                <constraint firstAttribute="width" constant="144" id="Pbv-Qb-SPP"/>
-                                <constraint firstAttribute="trailing" secondItem="Sug-sG-dOW" secondAttribute="trailing" id="bIL-Is-aHQ"/>
-                            </constraints>
-                        </view>
-                    </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JSn-SX-yn0">
+                    <rect key="frame" x="0.0" y="658" width="100" height="150"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TyC-Cd-jzY">
+                            <rect key="frame" x="0.0" y="0.0" width="100" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="YqI-zl-xee"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="开美颜"/>
+                            <connections>
+                                <action selector="onPressedBtnOpenBeauty:" destination="-1" eventType="touchUpInside" id="upr-KT-yqU"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DaG-PU-nV3">
+                            <rect key="frame" x="0.0" y="55" width="100" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="JXt-T5-fvD"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="开高清"/>
+                            <connections>
+                                <action selector="onPressedBtnOpenGaoqing:" destination="-1" eventType="touchUpInside" id="HDV-xP-un7"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="xYr-v3-dmi" secondAttribute="bottom" id="GFt-lk-5cv"/>
-                        <constraint firstAttribute="trailing" secondItem="xYr-v3-dmi" secondAttribute="trailing" id="axi-0t-JEn"/>
+                        <constraint firstItem="DaG-PU-nV3" firstAttribute="leading" secondItem="JSn-SX-yn0" secondAttribute="leading" id="4iJ-FU-fwO"/>
+                        <constraint firstAttribute="trailing" secondItem="TyC-Cd-jzY" secondAttribute="trailing" id="5Pw-fz-XyD"/>
+                        <constraint firstItem="TyC-Cd-jzY" firstAttribute="top" secondItem="JSn-SX-yn0" secondAttribute="top" id="5Ri-mO-cgJ"/>
+                        <constraint firstItem="TyC-Cd-jzY" firstAttribute="leading" secondItem="JSn-SX-yn0" secondAttribute="leading" id="GeW-Gt-cAg"/>
+                        <constraint firstItem="DaG-PU-nV3" firstAttribute="top" secondItem="TyC-Cd-jzY" secondAttribute="bottom" constant="20" id="IMr-vX-g6b"/>
+                        <constraint firstAttribute="height" constant="150" id="TaG-bg-WD1"/>
+                        <constraint firstAttribute="trailing" secondItem="DaG-PU-nV3" secondAttribute="trailing" id="m1c-yM-QVR"/>
+                        <constraint firstAttribute="width" constant="100" id="mbp-BH-3aa"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wEX-An-Gd6">
+                    <rect key="frame" x="0.0" y="59" width="85" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="85" id="Bpi-FU-xah"/>
+                        <constraint firstAttribute="height" constant="35" id="Fqn-6G-Vhe"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
+                    <connections>
+                        <action selector="onPressedBtnCancel:" destination="-1" eventType="touchUpInside" id="iMa-8h-DOM"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="1Ed-cv-viI" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="3Ug-pM-i1U"/>
+                <constraint firstItem="wEX-An-Gd6" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="EXK-b2-NKT"/>
+                <constraint firstItem="JSn-SX-yn0" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Jf1-w7-ZsI"/>
                 <constraint firstItem="1Ed-cv-viI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Rvb-Vg-2W7"/>
                 <constraint firstItem="1Ed-cv-viI" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="SKS-pi-W4I"/>
                 <constraint firstAttribute="bottom" secondItem="1Ed-cv-viI" secondAttribute="bottom" id="etE-5l-qep"/>
+                <constraint firstItem="wEX-An-Gd6" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="qNO-w0-F5v"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="JSn-SX-yn0" secondAttribute="bottom" constant="10" id="yfe-4E-bnr"/>
             </constraints>
             <point key="canvasLocation" x="87.786259541984734" y="20.422535211267608"/>
         </view>

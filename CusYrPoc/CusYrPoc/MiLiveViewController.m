@@ -20,6 +20,8 @@ NSString *const license_name = @"SenseME.lic";
 @property (nonatomic,strong) AgoraRtcEngineKit *agoraKit;
 
 @property(assign, nonatomic) BOOL enable;
+@property (weak, nonatomic) IBOutlet UIButton *mBeautyBtn;
+
 
 @end
 
@@ -28,15 +30,22 @@ NSString *const license_name = @"SenseME.lic";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
     NSLog(@"QiDebug, appid: %@",AppID);
     self.enable = NO;
-    
+   
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self initializeAgoraEngine];
-    
     [self joinChannel];
 }
 
+- (UIModalPresentationStyle)modalPresentationStyle
+{
+    return UIModalPresentationFullScreen;
+}
 
 // Objective-C
 - (void)initializeAgoraEngine {
@@ -51,16 +60,11 @@ NSString *const license_name = @"SenseME.lic";
     [self enableExtension:nil];
     [self.agoraKit enableVideo];
     
-//    [self.agoraKit setChannelProfile:AgoraChannelProfileLiveBroadcasting];
-//    [self.agoraKit setClientRole:AgoraClientRoleBroadcaster];
-    
     AgoraCameraCapturerConfiguration *cfg = [[AgoraCameraCapturerConfiguration alloc] init];
     cfg.dimensions = CGSizeMake(720, 1280);
     cfg.frameRate = 24;
     cfg.cameraDirection = AgoraCameraDirectionFront;
     [self.agoraKit setCameraCapturerConfiguration:cfg];
-
-
 
     AgoraRtcChannelMediaOptions *opts = [AgoraRtcChannelMediaOptions new];
     opts.clientRoleType = AgoraClientRoleBroadcaster;
@@ -77,12 +81,7 @@ NSString *const license_name = @"SenseME.lic";
    
     [self.agoraKit startPreview];
     [self setupLocalVideo];
-    [self initExtension:nil];
-    [self setComposer:nil];
-    [self setSticker:nil];
-    
-//    [self.agoraKit joinChannelByToken:@"" channelId:@"qitest" info:nil uid:111 joinSuccess:nil];
-    
+
     [self.agoraKit joinChannelByToken:@"" channelId:@"qitest" uid:111 mediaOptions:opts joinSuccess:nil];
 }
 
@@ -102,13 +101,11 @@ NSString *const license_name = @"SenseME.lic";
     [self.agoraKit setupLocalVideo:videoCanvas];
 }
 
-
 - (IBAction)enableExtension:(id)sender {
     self.enable = !self.enable;
     int res = [self.agoraKit enableExtensionWithVendor:@"SenseTime"
                                    extension:@"Effect"
                                      enabled:self.enable];
-    NSLog(@"QiDebug，美颜可用：%d",res);
 }
 
 - (IBAction)initExtension:(id)sender {
@@ -129,7 +126,6 @@ NSString *const license_name = @"SenseME.lic";
                                  extension:@"Effect"
                                        key:@"st_mobile_check_activecode"
                                      value:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
-        NSLog(@"QiDebug，检查激活码：%d",res);
     }
 
     {
@@ -206,10 +202,89 @@ NSString *const license_name = @"SenseME.lic";
   return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 
+- (void)setSmooth
+{
+    NSError *error;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:@{
+                                                        @"param": @(EFFECT_BEAUTY_BASE_FACE_SMOOTH),
+                                                        @"val": @0.5f
+                                                    }
+                                                   options:NSJSONWritingPrettyPrinted
+                                                     error:&error];
+    
+    [self.agoraKit
+        setExtensionPropertyWithVendor:@"SenseTime"
+                             extension:@"Effect"
+                                   key:@"st_mobile_effect_set_beauty_strength"
+                                 value:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
+}
+
+- (IBAction)onPressedBtnOpenBeauty:(id)sender {
+    self.enable = !self.enable;
+    [self.agoraKit enableExtensionWithVendor:@"SenseTime"
+                                   extension:@"Effect"
+                                     enabled:self.enable];
+    if(self.enable){
+        [self.mBeautyBtn setTitle:@"关美颜" forState:UIControlStateNormal];
+        [self initExtension:nil];
+//        [self setComposer:nil];
+        [self setSticker:nil];
+        [self setSmooth];
+    }else{
+        [self.mBeautyBtn setTitle:@"开美颜" forState:UIControlStateNormal];
+    }
+}
+
+- (IBAction)onPressedBtnOpenGaoqing:(id)sender {
+    [self.agoraKit leaveChannel:nil];
+    
+    // 主播端启用265
+    [self.agoraKit setParameters:@"{\"che.video.videoCodecIndex\": 2}"];
+    [self.agoraKit setParameters:@"{\"che.video.hw265_enc_enable\": 1}"];
+    
+    // 观众端开启265
+    [self.agoraKit setParameters:@"{\"che.video.h265dec_libhevc_enable\": false}"];
+    [self.agoraKit setParameters:@"{\"che.video.h265_dec_enable\": true}"];
+    
+    
+    // 开超超级画质
+    [self.agoraKit setParameters:@"{\"rtc.video.enable_sr\":{\"enabled\":true, \"mode\":2},\"rtc.video.sr_max_wh\":921598,\"rtc.video.sr_type\":7}"];
+    
+    [self joinChannel];
+}
+
+
+- (IBAction)onPressedBtnCancel:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.agoraKit leaveChannel:nil];
+}
+
+
 #pragma mark --AgoraRtcEngineDelegate
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didJoinChannel:(NSString *)channel withUid:(NSUInteger)uid elapsed:(NSInteger)elapsed
 {
     NSLog(@"QiDebug, join channel success, uid:%lu\n",uid);
+    
+    AgoraLiveTranscodingUser *user = [[AgoraLiveTranscodingUser alloc] init];
+    user.uid = 0;
+    user.rect = CGRectMake(0, 0, 360, 640);
+//        user.alpha = 1.0;
+//        user.zOrder = 1;
+    user.audioChannel = 2;
+    
+    
+    AgoraLiveTranscoding *transcoding = [[AgoraLiveTranscoding alloc] init];
+    transcoding.audioSampleRate = AgoraAudioSampleRateType48000;
+    transcoding.audioChannels = 1;
+    transcoding.audioBitrate = 48;
+    transcoding.size = CGSizeMake(360, 640);
+    transcoding.videoBitrate  = 1000;
+    transcoding.videoFramerate = 15;
+    transcoding.videoCodecProfile = AgoraVideoCodecProfileTypeHigh;
+    transcoding.transcodingUsers = @[user];
+    
+   [ self.agoraKit startRtmpStreamWithTranscoding:@"rtmps://examplepush.agoramdn.com/live/qitest" transcoding:transcoding];
+    
 }
 
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didJoinedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed

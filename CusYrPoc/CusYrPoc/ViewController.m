@@ -8,13 +8,23 @@
 #import "ViewController.h"
 #import "MiLiveViewController.h"
 #import "MiAudienceVC.h"
+#import "MiCdnAudienceVC.h"
 
 @interface ViewController ()
 @property (nonatomic,strong) MiLiveViewController *miLiveVC;
 @property (nonatomic,strong) MiAudienceVC *miAudienceVC;
+@property (nonatomic,strong) MiCdnAudienceVC *miCdnAudienceVC;
 @end
 
 @implementation ViewController
+
+- (MiCdnAudienceVC *)miCdnAudienceVC
+{
+    if(!_miCdnAudienceVC){
+        _miCdnAudienceVC = [[MiCdnAudienceVC alloc] initWithNibName:@"MiCdnAudienceVC" bundle:nil];
+    }
+    return _miCdnAudienceVC;
+}
 
 - (MiLiveViewController *)miLiveVC
 {
@@ -42,6 +52,7 @@
     
 }
 - (IBAction)onPressedBtnToCdn:(id)sender {
+    [self presentViewController:self.miCdnAudienceVC animated:YES completion:nil];
 }
 - (IBAction)onPressedBtnToRtc:(id)sender {
     [self presentViewController:self.miAudienceVC animated:YES completion:nil];

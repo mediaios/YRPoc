@@ -58,6 +58,8 @@
 		84FAB66A2A29828D0047315E /* 试表.png in Resources */ = {isa = PBXBuildFile; fileRef = 84FAB6462A29828D0047315E /* 试表.png */; };
 		84FAB66F2A2DD4AD0047315E /* AgoraSenseTimeExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84FAB66D2A2DD4870047315E /* AgoraSenseTimeExtension.framework */; };
 		84FAB6702A2DD4AD0047315E /* AgoraSenseTimeExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84FAB66D2A2DD4870047315E /* AgoraSenseTimeExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		84FAB6752A2DE8E20047315E /* MiCdnAudienceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FAB6732A2DE8E20047315E /* MiCdnAudienceVC.m */; };
+		84FAB6762A2DE8E20047315E /* MiCdnAudienceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FAB6742A2DE8E20047315E /* MiCdnAudienceVC.xib */; };
 		E7B8247B2CD6311A1B3F4555 /* Pods_CusYrPoc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE42367A8B9CF0E97C72B4AE /* Pods_CusYrPoc.framework */; };
 /* End PBXBuildFile section */
 
@@ -155,6 +157,9 @@
 		84FAB6452A29828D0047315E /* 试表.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "试表.md"; sourceTree = "<group>"; };
 		84FAB6462A29828D0047315E /* 试表.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "试表.png"; sourceTree = "<group>"; };
 		84FAB66D2A2DD4870047315E /* AgoraSenseTimeExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraSenseTimeExtension.framework; sourceTree = "<group>"; };
+		84FAB6722A2DE8E20047315E /* MiCdnAudienceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiCdnAudienceVC.h; sourceTree = "<group>"; };
+		84FAB6732A2DE8E20047315E /* MiCdnAudienceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiCdnAudienceVC.m; sourceTree = "<group>"; };
+		84FAB6742A2DE8E20047315E /* MiCdnAudienceVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MiCdnAudienceVC.xib; sourceTree = "<group>"; };
 		EE42367A8B9CF0E97C72B4AE /* Pods_CusYrPoc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CusYrPoc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -227,6 +232,9 @@
 				84FAB5DB2A174E580047315E /* SceneDelegate.m */,
 				84FAB5DD2A174E580047315E /* ViewController.h */,
 				84FAB5DE2A174E580047315E /* ViewController.m */,
+				84FAB6722A2DE8E20047315E /* MiCdnAudienceVC.h */,
+				84FAB6732A2DE8E20047315E /* MiCdnAudienceVC.m */,
+				84FAB6742A2DE8E20047315E /* MiCdnAudienceVC.xib */,
 				84FAB6122A1775720047315E /* MiAudienceVC.h */,
 				84FAB6132A1775720047315E /* MiAudienceVC.m */,
 				84FAB6142A1775720047315E /* MiAudienceVC.xib */,
@@ -526,6 +534,7 @@
 				84FAB6532A29828D0047315E /* eyeshadow.bundle in Resources */,
 				84FAB5E22A174E580047315E /* Main.storyboard in Resources */,
 				84FAB6672A29828D0047315E /* tryon_watch_banner.png in Resources */,
+				84FAB6762A2DE8E20047315E /* MiCdnAudienceVC.xib in Resources */,
 				84FAB6612A29828D0047315E /* cat_toukui.png in Resources */,
 				84FAB65E2A29828D0047315E /* animal_banner.png in Resources */,
 				84FAB6592A29828D0047315E /* PortraitFilters.bundle in Resources */,
@@ -604,6 +613,7 @@
 			files = (
 				84FAB5DF2A174E580047315E /* ViewController.m in Sources */,
 				84FAB5D92A174E580047315E /* AppDelegate.m in Sources */,
+				84FAB6752A2DE8E20047315E /* MiCdnAudienceVC.m in Sources */,
 				84FAB6152A1775720047315E /* MiAudienceVC.m in Sources */,
 				84FAB5EA2A174E5B0047315E /* main.m in Sources */,
 				84FAB60F2A175F0C0047315E /* MiLiveViewController.m in Sources */,
