@@ -17,10 +17,15 @@ NSString *const license_name = @"SenseME.lic";
 
 @interface MiLiveViewController ()<AgoraRtcEngineDelegate,UIPopoverPresentationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *liveView;
+//@property (nonatomic,strong)  UIView *mView;
 @property (nonatomic,strong) AgoraRtcEngineKit *agoraKit;
 
 @property(assign, nonatomic) BOOL enable;
 @property (weak, nonatomic) IBOutlet UIButton *mBeautyBtn;
+@property (weak, nonatomic) IBOutlet UIButton *mirrorBtn;
+
+@property (nonatomic,assign) NSUInteger remoteUid;
+
 
 
 @end
@@ -54,6 +59,7 @@ NSString *const license_name = @"SenseME.lic";
     config.appId = AppID;
     self.agoraKit = [AgoraRtcEngineKit sharedEngineWithConfig:config
                                                      delegate:self];
+    NSLog(@"QiDebug, sdk version: %@",[AgoraRtcEngineKit getSdkVersion]);
 }
 
 - (void)joinChannel{
@@ -251,11 +257,39 @@ NSString *const license_name = @"SenseME.lic";
     [self.agoraKit setParameters:@"{\"rtc.video.enable_sr\":{\"enabled\":true, \"mode\":2},\"rtc.video.sr_max_wh\":921598,\"rtc.video.sr_type\":7}"];
     
     [self joinChannel];
+    
+    [AgoraRtcEngineKit destroy];
 }
 
 - (IBAction)onPressedBtnCancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
     [self.agoraKit leaveChannel:nil];
+}
+
+
+static BOOL openMirrorMode = NO;
+- (IBAction)switchMirrorMode:(id)sender {
+    if(!openMirrorMode){
+        openMirrorMode = YES;
+        
+        AgoraVideoEncoderConfiguration *encoderCfg = [[AgoraVideoEncoderConfiguration alloc] initWithSize:CGSizeMake(720, 1280)
+                                                                                                frameRate:15
+                                                                                                  bitrate:AgoraVideoBitrateStandard
+                                                                                          orientationMode:AgoraVideoOutputOrientationModeAdaptative
+                                                                                               mirrorMode:AgoraVideoMirrorModeEnabled];
+        [self.agoraKit setVideoEncoderConfiguration:encoderCfg];
+        [self.mirrorBtn setTitle:@"关镜像" forState:UIControlStateNormal];
+        return;
+    }
+
+    openMirrorMode = NO;
+    AgoraVideoEncoderConfiguration *encoderCfg = [[AgoraVideoEncoderConfiguration alloc] initWithSize:CGSizeMake(720, 1280)
+                                                                                            frameRate:15
+                                                                                              bitrate:AgoraVideoBitrateStandard
+                                                                                      orientationMode:AgoraVideoOutputOrientationModeAdaptative
+                                                                                           mirrorMode:AgoraVideoMirrorModeDisabled];
+    [self.agoraKit setVideoEncoderConfiguration:encoderCfg];
+    [self.mirrorBtn setTitle:@"开镜像" forState:UIControlStateNormal];
 }
 
 #pragma mark --AgoraRtcEngineDelegate
@@ -285,15 +319,29 @@ NSString *const license_name = @"SenseME.lic";
     
 }
 
+
+- (void)setupRemoteVideo:(NSUInteger)uid{
+    self.remoteUid = uid;
+    NSLog(@"QiDebug, ---%s---",__func__);
+    AgoraRtcVideoCanvas *videoCanvas = [[AgoraRtcVideoCanvas alloc] init];
+    videoCanvas.uid = uid;
+    videoCanvas.renderMode = AgoraVideoRenderModeHidden;
+    videoCanvas.view = self.liveView;
+    [self.agoraKit setupRemoteVideo:videoCanvas];
+}
+
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didJoinedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed
 {
     NSLog(@"QiDebug, remote user joined channel, uid:%lu\n",uid);
-//    [self setupRemoteVideo:uid];
+    [self setupRemoteVideo:uid];
 }
 
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine reportAudioVolumeIndicationOfSpeakers:(NSArray<AgoraRtcAudioVolumeInfo *> *)speakers totalVolume:(NSInteger)totalVolume
 {
     NSLog(@"QiDebug, -----%s--------",__func__);
 }
+
+
+
 
 @end

@@ -8,6 +8,6 @@
 #ifndef MiKeyCentor_h
 #define MiKeyCentor_h
 
-#define  AppID  @""
+#define  AppID  @"20338919f2ca4af4b1d7ec23d8870b56"
 
 #endif /* MiKeyCentor_h */

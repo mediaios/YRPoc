@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="liveView" destination="1Ed-cv-viI" id="bvB-9O-Odt"/>
                 <outlet property="mBeautyBtn" destination="TyC-Cd-jzY" id="w7b-IO-qj9"/>
+                <outlet property="mirrorBtn" destination="i23-MJ-nyf" id="4LR-RJ-MC9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -50,15 +51,29 @@
                                 <action selector="onPressedBtnOpenGaoqing:" destination="-1" eventType="touchUpInside" id="HDV-xP-un7"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i23-MJ-nyf">
+                            <rect key="frame" x="0.0" y="95" width="100" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="fnK-3J-Z70"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="开镜像"/>
+                            <connections>
+                                <action selector="switchMirrorMode:" destination="-1" eventType="touchUpInside" id="p5v-p1-EQE"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="i23-MJ-nyf" firstAttribute="leading" secondItem="JSn-SX-yn0" secondAttribute="leading" id="2fV-nB-nA9"/>
                         <constraint firstItem="DaG-PU-nV3" firstAttribute="leading" secondItem="JSn-SX-yn0" secondAttribute="leading" id="4iJ-FU-fwO"/>
                         <constraint firstAttribute="trailing" secondItem="TyC-Cd-jzY" secondAttribute="trailing" id="5Pw-fz-XyD"/>
                         <constraint firstItem="TyC-Cd-jzY" firstAttribute="top" secondItem="JSn-SX-yn0" secondAttribute="top" id="5Ri-mO-cgJ"/>
                         <constraint firstItem="TyC-Cd-jzY" firstAttribute="leading" secondItem="JSn-SX-yn0" secondAttribute="leading" id="GeW-Gt-cAg"/>
                         <constraint firstItem="DaG-PU-nV3" firstAttribute="top" secondItem="TyC-Cd-jzY" secondAttribute="bottom" constant="20" id="IMr-vX-g6b"/>
                         <constraint firstAttribute="height" constant="150" id="TaG-bg-WD1"/>
+                        <constraint firstAttribute="trailing" secondItem="i23-MJ-nyf" secondAttribute="trailing" id="gcc-2P-k00"/>
+                        <constraint firstItem="i23-MJ-nyf" firstAttribute="top" secondItem="DaG-PU-nV3" secondAttribute="bottom" constant="5" id="jxq-vd-1IW"/>
                         <constraint firstAttribute="trailing" secondItem="DaG-PU-nV3" secondAttribute="trailing" id="m1c-yM-QVR"/>
                         <constraint firstAttribute="width" constant="100" id="mbp-BH-3aa"/>
                     </constraints>
